@@ -1,0 +1,904 @@
+body {
+    margin: 0;
+    font-family: 'Comfortaa', sans-serif !important;
+}
+
+html, body {
+    height: 100%;
+    overflow: auto;
+}
+
+/* Меню стилі */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 100vh;           /* ✅ Повна висота вікна */
+    background-color: #f4f4f4;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.254);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    scrollbar-width: thin; 
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.menu-toggle {
+    opacity: 0;
+}
+
+.menu a::after {
+    content: none;
+}
+
+.menu h1::after {
+    content: none !important;
+}
+
+.menu h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    margin: auto auto 0px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none !important;
+    transition: none;
+}
+
+.menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+h1 a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.432);
+    font-size: 32px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+h1 a:hover {
+    color: rgb(54, 54, 54);
+    transform: scale(1.1);
+}
+
+/*зміна мови*/
+.language-switcher {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    top: 30px;        /* вертикально над логотипом */
+    left: 169px;       /* ⬅️ зсуває вліво або ➡️ вправо */
+    z-index: 1000;
+}
+
+.arrow {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 3px solid #333;
+    border-bottom: 3px solid #333;
+    transform: rotate(45deg); 
+    transition: all 0.3s ease;
+    margin-right: 0px;
+}
+
+.language-switcher:hover .arrow {
+    transform: rotate(-135deg); /* вигляд як > */
+    border-left: 3px solid #595959;
+    border-bottom: 3px solid #595959;
+}
+
+.language-button {
+    background: #f4f4f4;
+    color: #333;
+    padding: 2px 10px;
+    border: transparent;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+    top: 0px;
+    position: relative;     /* ✅ ключове */
+    z-index: 2;             /* кнопка вище */
+    transition: color 0.5s ease;
+}
+
+.language-button .lang-label {
+    display: inline-block;
+    vertical-align: baseline; /* вирівнювання базової лінії тексту */
+    font-size: 20px;
+    transform: translateY(3px);
+}
+
+.language-button:hover{
+    color: #8a8a8a;
+}
+
+/* Випливаюче меню праворуч */
+.language-popup {
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 6px 12px;
+    white-space: nowrap;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease, right 0.5s ease;
+    font-weight: 500;
+    font-size: 18px;
+    z-index: 1;
+}
+
+/* При наведенні — показуємо */
+.language-switcher.active .language-popup {
+    display: flex;
+    opacity: 1;
+    right: 52px;
+}
+
+.language-switcher:hover .language-popup {
+    display: flex;
+    opacity: 1;
+    right: 52px;
+}
+
+
+/* Стилі для посилань */
+.language-popup a,
+.language-popup samp {
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+    top: 3.5px;
+    transition: font-weight 0.5s ease;
+}
+
+.language-popup p {
+    margin-bottom: 11px;
+}
+
+.lang-label p {
+    bottom: 20px;
+}
+
+.language-popup .current{
+    color: #8a8a8a;
+}
+
+.language-popup a:hover {
+    color: #8a8a8a;
+    font-weight: 700;
+
+}
+
+.language-popup .active-lang {
+    font-weight: bold;
+    color: #888;
+}
+
+
+/* Анімації */
+.logo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 30px 0 0 0;
+}
+
+.logo-text {
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.logo-text .big {
+    font-size: 40px;
+    letter-spacing: 2px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.project-container {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+
+.project-links {
+    display: grid;           /* завжди */
+    row-gap: 5px;           /* 10px між кожним пунктом */
+    padding-top: 8px;
+  
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.6s ease-out, opacity 0.3s ease, visibility 0.6s ,scrollbar-color 0.3s ease-out;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(194, 77, 77, 0) transparent;
+}
+
+
+.project-container:hover .project-links {
+    display: grid;
+    max-height: 36vh;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
+    transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s;
+}
+
+/* Фіксована ширина скролбару */
+.project-links::-webkit-scrollbar {
+    width: 6px;
+    transition: opacity 0.3s ease;      
+    opacity: 0;                         
+}
+
+/* Прозорий трек, щоб нічого не миготіло */
+.project-links::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* «Повзунок» теж прозорий за замовчуванням */
+.project-links::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Коли список розгорнутий (або на hover)—показуємо скролбар */
+.project-container:hover .project-links::-webkit-scrollbar,
+.project-container:hover .project-links::-webkit-scrollbar-thumb {
+    opacity: 1;
+}
+
+/* Додатково: підсвічування при hover на самому «повзунку» */
+.project-links::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.menu h2 {
+    font-size: 18px;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu h2 a:hover {
+    color: rgb(124, 124, 124);
+    transform: scale(1.1);
+}
+
+h2 {
+    margin-left: 25px;
+}
+
+p {
+    text-decoration: none;
+    margin: 0;
+}
+
+p a {
+    font-size: 15px;
+    margin-left: 40px;
+    display: block;
+    text-align: left;
+    color: gray;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+p a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+/* Посилання */
+a {
+    text-decoration: none;
+}
+
+p a:hover {
+    transform: scale(1.1);
+}
+
+p a:hover::after {
+    width: 100%;
+}
+
+.menu-bottom {
+    margin-top: auto;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s forwards;
+}
+
+.menu-bottom p{
+    margin-top: 10px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);  /* якщо ця лінія дає простір, видали або заміни на translateY(0) */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: slideUp 1s 0.5s forwards;
+}
+
+.previous-element {
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.432);
+    font-size: 35px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: rgba(0, 0, 0, 0.521);
+    transform: scale(1.3);
+}
+
+.menu a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 5px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* контент */
+/* Основний контейнер для контенту */
+.content {
+    display: flex;
+    align-items: flex-start; /* Текст починається зверху */
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 50px;         /* Відступ від верху */
+    flex-direction: row-reverse; /* Змінює порядок елементів */
+
+}
+
+/* Фото справа, фіксоване */
+.photo img{
+    position: fixed;         /* Фіксуємо фото на екрані */
+    top: 50px;               /* Відступ від верху, щоб не перекривало меню */
+    right: 50px;             /* Відступ справа */
+    width: 25vw;            /* Ширина фото */
+    height: 90vh;            /* Висота на всю висоту екрану */
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Текст ліворуч, скролиться */
+.text {
+    max-width: 70%;        /* ширина текстового блоку */
+    margin: 0 30vw 0 15vw;
+    font-family: 'Comfortaa', sans-serif;
+    line-height: 1.8;
+
+    color: #333;
+}
+
+/* Заголовки */
+.text h4, .text h5 {
+    font-family: 'Comfortaa', sans-serif;
+    color: #000;
+    font-size: 2vw;
+    margin: 30px 0 3px 0
+}
+
+.awards p {
+    font-weight: bold; /* робить текст жирним */
+    margin: 0 !important;}
+
+.text h6 {
+    font-family: 'Comfortaa', sans-serif;
+    color: #000;
+    font-size: 1.5vw;
+    margin: 35px 0 20px 0
+}
+
+
+/* Список нагород */
+.text ul {
+    list-style-type: square;
+    margin: 25px 0 5px;
+    text-align: left; /* Збереження вирівнювання для списків */
+}
+
+/* Параграфи */
+.text p {
+    margin-bottom: 10px;
+}
+
+.awards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Два стовпці */
+    gap: 15px 30px; /* Відстань між елементами */
+    list-style-type: square; /* Залишає стандартні маркери */
+    padding-left: 20px; /* Відступ для маркерів */
+    margin: 0 !important;
+}
+
+.awards li {
+    text-align: left; /* Вирівнювання тексту */
+}
+
+.awards a {
+    display: inline-block;
+    padding: 10px 18px;
+    margin: 5px 0;
+    background: #f0f0f0;        /* базовий фон */
+    color: #333;                 /* колір тексту */
+    border-radius: 8px;          /* округлі кути */
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;   /* плавна анімація */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* легка тінь */
+}
+
+.awards a:hover {
+    transform: scale(1.05);      /* трохи збільшуємо */
+    background: #e0e0e0;         /* змінюємо фон */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* більша тінь */
+    border-radius: 12px;         /* злегка змінюємо форму */
+    color: #000;                 /* трохи темніший текст */
+}
+
+/* малі екрани */
+@media screen and (max-width: 900px), (max-height: 800px) {
+    /* Корекція меню */
+    .menu {
+    width: 100%;
+    max-height: 80px;
+    padding: 0;
+    margin: 0;    
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+  }
+
+.menu.menu-open {
+    max-height: 100%;
+}
+
+.topbar-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    gap: 8px;
+    position: relative;
+}
+
+.logo-container {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0 25px 0;
+    white-space: nowrap;   /* щоб текст не переносився */
+
+}
+
+.logo-text .big{
+    font-size: 6vw;
+    line-height: 20px;
+    width: 100px;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    justify-content:left;
+    flex-shrink: 0;
+    left: 0; 
+    top: 15px;
+    padding: 0px 8px 45px;
+    min-width: 40px;
+    font-weight: bold;
+    background: transparent;
+    position: relative; /* залишається! */
+    z-index: 5;
+}
+
+.arrow {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 3px solid #333;
+    border-bottom: 3px solid #333;
+    transform: rotate(-45deg) !important; 
+    transition: all 0.3s ease;
+    margin-right: 0px;
+}
+
+/* Замість hover — через клас active */
+.language-switcher.active .arrow {
+    transform: rotate(-225deg) !important; /* стрілка в іншу сторону */
+    border-left: 3px solid #595959;
+    border-bottom: 3px solid #595959;
+}
+
+
+.language-switcher:hover .language-popup {
+    display: none ;
+    pointer-events: none;
+}
+
+.language-button {
+    font-size: 14px;  
+    all: unset;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 6px 8px;
+    border-radius: 4px;
+    line-height: 1;
+    user-select: none;
+}
+
+.language-popup {
+    position: fixed;
+    top: 150px;            /* налаштуй по вертикалі */
+    left: 75;            /* додав px */
+    background: white;
+
+  /* Замість border: 1px solid #ccc; робимо окремі бордери */
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: none;
+
+    border-radius: 0 0 4px 4px; /* щоб заокруглення було тільки знизу */
+  
+    padding: 10px;
+    width: 75px;
+    margin-top: 0px;
+    display: none;   /* за замовчуванням сховано */
+    z-index: 1100;
+
+    transform: translateY(-50%);
+    transition: opacity 0.4s ease, top 0.5s ease;
+}
+
+
+.language-switcher.active .language-popup {
+    display: flex;  /* показуємо, якщо є active */
+    opacity: 1;
+    top: 90px;  
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 20px;
+    opacity: 1;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 24px;
+    background-color: black;
+}
+
+.scrol {
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; 
+}
+
+  /* опційно — стиль смуги прокрутки */
+.scrol::-webkit-scrollbar {
+    width: 6px;
+}
+.scrol::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.4);
+    border-radius: 3px;
+}
+
+.project-container,
+.menu-bottom {
+    display: none;
+}
+
+.menu.menu-open .project-container,
+.menu.menu-open .menu-bottom {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.project-container {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: default;
+    overflow: visible !important;
+    height: auto;
+}
+
+.project-links {
+/* Ведемо себе як у звичайному стані: */
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    transition: none !important;
+    display: block !important; /* якщо раніше мінявось на grid */
+    padding: 0 !important;      /* усуваємо будь‑які внутрішні відступи */
+    margin: 0 !important;       /* усуваємо зовнішні */
+}   
+
+.project-links p {
+    margin-left: 15px;
+    padding: 0.5px;
+}
+
+.project-container:hover .project-links {
+    max-height: none; /* Достатньо велике значення, щоб помістити всі пункти */
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.project-container:hover .project-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-height: 70%; /* Адаптується під висоту вікна */
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;  /* Додаємо авто-скрол при потребі */
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
+
+    transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s;
+}  
+
+.menu h2 {
+    font-size: 18px;
+    width: 150px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/*content*/  
+  .content {
+    display: flex;
+    flex-direction: column;  /* усе один за одним */
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;  }
+
+  .content img {
+    width: 90%;            /* квадратне фото */
+    height: 250px;
+    right: 0;             /* Відступ справа */
+    object-fit: cover;       /* обрізає, щоб зберегти квадрат */
+    position: relative;
+  }
+
+  .content * {
+    text-align: center;      /* вирівнювання тексту по центру */
+    width: 100%;              /* текст не впритул до країв */
+    margin: 30px 0 0;
+  }
+
+  .text {
+    max-width: 90%;            /* на всю ширину */
+    margin: -35px 0 0 0 !important;
+    padding: 0;
+}
+/* Заголовки */
+.text h4, .text h5 {
+    font-family: 'Comfortaa', sans-serif;
+    color: #000;
+    font-size: 6vw;
+    font-weight: bold;
+    margin: 60px 0 0;              /* вертикальні відступи між заголовками */
+    text-align: center;
+}
+
+/* Заголовки */
+.awards p {
+    font-weight: bold; /* робить текст жирним */
+    margin: 0 !important;}
+
+.text h6 {
+    font-family: 'Comfortaa', sans-serif;
+    color: #000;
+    font-size: 100%;
+    margin: 60px 0 -40px 0
+}
+
+/* Список нагород */
+.text ul {
+    list-style-type: square;
+    margin: 25px 0 5px;
+    text-align: left; /* Збереження вирівнювання для списків */
+}
+
+/* Параграфи */
+.text p {
+    margin: 0 0 15px
+}
+
+/* Список нагород */
+.awards {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;             /* перенос рядків при потребі */
+    justify-content: center;     /* по центру */
+    gap: 0px 0px;              /* відстань між елементами */
+    margin: 20px 0;              /* відступ від заголовків */
+    padding: 0;
+}
+
+.awards li {
+    text-align: center;
+    display: inline-block;       /* в один ряд */
+    margin: 0 0 15px;
+}
+
+.awards a {
+    display: inline-block;
+    padding: 10px 18px;
+    margin: 5px 0;
+    background: #f0f0f0;        /* базовий фон */
+    color: #333;                 /* колір тексту */
+    border-radius: 8px;          /* округлі кути */
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;   /* плавна анімація */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* легка тінь */
+}
+
+.awards a:active {
+    transform: scale(1.05);      /* трохи збільшуємо */
+    background: #e0e0e0;         /* змінюємо фон */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* більша тінь */
+    border-radius: 12px;         /* злегка змінюємо форму */
+    color: #000;                 /* трохи темніший текст */
+}
+
+/* Футер */
+.footer {
+    margin: 20px auto;
+    text-align: center;
+    max-width: 100%;
+    font-size: 14px;
+}
+}
+
+@media screen and (min-width: 900px) and (max-width: 1100px){
+html, body {
+    height: auto !important;
+    overflow-y: auto !important;
+}
+
+.project-container {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: default;
+    overflow: visible !important;
+    height: auto;
+}
+
+.project-links {
+/* Ведемо себе як у звичайному стані: */
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    transition: none !important;
+    display: block !important; /* якщо раніше мінявось на grid */
+    padding: 0 !important;      /* усуваємо будь‑які внутрішні відступи */
+    margin: 0 !important;       /* усуваємо зовнішні */
+}   
+
+.project-links p {
+    margin-left: 15px;
+    padding: 0.5px;
+}
+
+.project-container:hover .project-links {
+    max-height: none; /* Достатньо велике значення, щоб помістити всі пункти */
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.project-container:hover .project-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-height: 70%; /* Адаптується під висоту вікна */
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;  /* Додаємо авто-скрол при потребі */
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
+
+    transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s;
+}
+
+/*content*/
+.text {
+    max-width: 40%;            /* на всю ширину */
+    margin: 0 23vw 0 200px !important;
+    padding: 0;
+}
+}

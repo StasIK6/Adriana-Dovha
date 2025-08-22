@@ -1,0 +1,1303 @@
+body {
+    margin: 0;
+    font-family: 'Comfortaa', sans-serif !important;
+    overflow-x: hidden !important; /* ховає горизонтальний скролл */
+
+}
+
+html, body {
+    height: 100%;
+    overflow: auto;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Меню стилі */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 100vh;           /* ✅ Повна висота вікна */
+    background-color: #f4f4f4;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.254);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    scrollbar-width: thin; 
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.menu-toggle {
+    opacity: 0;
+}
+
+.menu a::after {
+    content: none;
+}
+
+.menu h1::after {
+    content: none !important;
+}
+
+.menu h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    margin: auto auto 0px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none !important;
+    transition: none;
+}
+
+.menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+h1 a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.432);
+    font-size: 32px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+h1 a:hover {
+    color: rgb(54, 54, 54);
+    transform: scale(1.1);
+}
+
+/*зміна мови*/
+.language-switcher {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    top: 30px;        /* вертикально над логотипом */
+    left: 169px;       /* ⬅️ зсуває вліво або ➡️ вправо */
+    z-index: 1000;
+}
+
+.arrow {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 3px solid #333;
+    border-bottom: 3px solid #333;
+    transform: rotate(45deg); 
+    transition: all 0.3s ease;
+    margin-right: 0px;
+}
+
+.language-switcher:hover .arrow {
+    transform: rotate(-135deg); /* вигляд як > */
+    border-left: 3px solid #595959;
+    border-bottom: 3px solid #595959;
+}
+
+.language-button {
+    background: #f4f4f4;
+    color: #333;
+    padding: 2px 10px;
+    border: transparent;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+    top: 0px;
+    position: relative;     /* ✅ ключове */
+    z-index: 2;             /* кнопка вище */
+    transition: color 0.5s ease;
+}
+
+.language-button .lang-label {
+    display: inline-block;
+    vertical-align: baseline; /* вирівнювання базової лінії тексту */
+    font-size: 20px;
+    transform: translateY(3px);
+}
+
+.language-button:hover{
+    color: #8a8a8a;
+}
+
+/* Випливаюче меню праворуч */
+.language-popup {
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 6px 12px;
+    white-space: nowrap;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease, right 0.5s ease;
+    font-weight: 500;
+    font-size: 18px;
+    z-index: 1;
+}
+
+/* При наведенні — показуємо */
+.language-switcher.active .language-popup {
+    display: flex;
+    opacity: 1;
+    right: 52px;
+}
+
+.language-switcher:hover .language-popup {
+    display: flex;
+    opacity: 1;
+    right: 52px;
+}
+
+
+/* Стилі для посилань */
+.language-popup a,
+.language-popup samp {
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+    top: 3.5px;
+    transition: font-weight 0.5s ease;
+}
+
+.language-popup p {
+    margin-bottom: 11px;
+}
+
+.lang-label p {
+    bottom: 20px;
+}
+
+.language-popup .current{
+    color: #8a8a8a;
+}
+
+.language-popup a:hover {
+    color: #8a8a8a;
+    font-weight: 700;
+
+}
+
+.language-popup .active-lang {
+    font-weight: bold;
+    color: #888;
+}
+
+
+/* Анімації */
+.logo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 30px 0 0 0;
+}
+
+.logo-text {
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.logo-text .big {
+    font-size: 40px;
+    letter-spacing: 2px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.project-container {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+
+.project-links {
+    display: grid;           /* завжди */
+    row-gap: 5px;           /* 10px між кожним пунктом */
+    padding-top: 8px;
+  
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.6s ease-out, opacity 0.3s ease, visibility 0.6s ,scrollbar-color 0.3s ease-out;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(194, 77, 77, 0) transparent;
+}
+
+
+.project-container:hover .project-links {
+    display: grid;
+    max-height: 36vh;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
+    transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s;
+}
+
+/* Фіксована ширина скролбару */
+.project-links::-webkit-scrollbar {
+    width: 6px;
+    transition: opacity 0.3s ease;      
+    opacity: 0;                         
+}
+
+/* Прозорий трек, щоб нічого не миготіло */
+.project-links::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* «Повзунок» теж прозорий за замовчуванням */
+.project-links::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Коли список розгорнутий (або на hover)—показуємо скролбар */
+.project-container:hover .project-links::-webkit-scrollbar,
+.project-container:hover .project-links::-webkit-scrollbar-thumb {
+    opacity: 1;
+}
+
+/* Додатково: підсвічування при hover на самому «повзунку» */
+.project-links::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.menu h2 {
+    font-size: 18px;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu h2 a:hover {
+    color: rgb(124, 124, 124);
+    transform: scale(1.1);
+}
+
+h2 {
+    margin-left: 25px;
+}
+
+p {
+    text-decoration: none;
+    margin: 0;
+}
+
+p a {
+    font-size: 15px;
+    margin-left: 40px;
+    display: block;
+    text-align: left;
+    color: gray;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+p a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+/* Посилання */
+a {
+    text-decoration: none;
+}
+
+p a:hover {
+    transform: scale(1.1);
+}
+
+p a:hover::after {
+    width: 100%;
+}
+
+.menu-bottom {
+    margin-top: auto;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s forwards;
+}
+
+.menu-bottom p{
+    margin-top: 10px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);  /* якщо ця лінія дає простір, видали або заміни на translateY(0) */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: slideUp 1s 0.5s forwards;
+}
+
+.previous-element {
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.432);
+    font-size: 35px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: rgba(0, 0, 0, 0.521);
+    transform: scale(1.3);
+}
+
+.menu a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 5px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* контент */
+h3, h4{
+    text-align: center;
+}
+
+.content {
+    text-align: center;
+    width: 80%;          /* ширина блоку, можна більше або менше */
+    max-width: 1200px;   /* щоб не було надто широким на великих екранах */
+    margin: 0 auto;      /* вирівнює по центру */
+}
+
+/* Основний контейнер, який центровано */
+.main-center-wrapper {
+    display: flex;
+    justify-content: center; /* горизонтальне вирівнювання */
+    align-items: center;     /* вертикальне вирівнювання */
+    width: 100%;
+    position: relative;      /* щоб можна було зсунути */
+}
+
+/* Центруємо вміст один під одним */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* елементи всередині по горизонталі */
+    text-align: center;
+    max-width: 90%; /* щоб не виходило за екран */
+    padding-left: 250px;
+}
+
+.content-wrapper h3, h4 {
+    white-space: nowrap !important;      /* один рядок */
+    font-size: 35px !important;           /* адаптивний розмір */
+    margin: 40px auto 20px auto; /* автоматичні відступи для центру */
+    text-align: center !important;       /* текст по центру */
+    display: block;                      /* стандарт для h4 */
+    width: fit-content !important;       /* ширина = довжина тексту */
+}
+
+
+/* Галерея з адаптивним дизайном */
+.content-wrapper .images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Зменшення відстані між фотографіями */
+    margin-top: 20px;
+    padding-left: 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 1430px) {
+.content-wrapper .images {
+    width: 80%;
+}
+}
+
+.content-wrapper .images img {
+    width: 100%;
+    max-width: 350px; /* Зменшення ширини фотографій */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Ефект збільшення при наведенні */
+.content-wrapper .images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/*відкривання фото*/
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;              /* Відстань між картками */
+    box-sizing: border-box;
+    margin: 20px 0 0 0 !important;
+}
+
+/* Зображення */
+.images a img {
+    width: 250px;
+    cursor: pointer;
+    margin: 3px;
+    transition: transform 0.5s ease;
+}
+
+/* Lightbox для збільшення фотографій */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.980);
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+  flex-direction: column;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.lightbox .close, .lightbox .prev, .lightbox .next {
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lightbox .close {
+  top: 20px;
+  right: 30px;
+}
+
+.lightbox .prev {
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox .next {
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.content p {
+    text-align: center !important;       /* текст по центру */
+    display: block;                      /* стандарт для h4 */
+}
+
+.main-text {
+    display: block;
+    width: 90%;          /* робимо ширше */
+    max-width: 900px;
+    margin: 20px auto;
+    
+    white-space: normal !important;       /* дозволяє перенос */
+    word-wrap: break-word !important;     /* переносить довгі слова */
+    overflow-wrap: break-word !important; /* сучасний аналог */
+}
+
+/* Контейнер рекомендацій */
+#recommendationsGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* завжди ліворуч */
+    gap: 10px; /* відстань між картками */
+    padding-left: clamp(0px, 3vw + 1%, 100px);
+    box-sizing: border-box;
+    width: 80vw;         /* займатиме 80% ширини батьківського контейнера */
+    max-width: 100vw;  /* але не більше 1000px */ 
+    margin: 0 auto;     /* центр по горизонталі */
+}
+
+/*для зменшення рекомендацій*/
+@media screen and (max-width: 1320px) {
+    .content-wrapper .images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Зменшення відстані між фотографіями */
+    margin-top: 20px;
+    padding-left: 50px;
+    width: 100%;
+}
+
+    #recommendationsGallery {
+        width: 80%;
+    padding-left: 0px;
+    }
+}
+
+/* Картки рекомендацій */
+#recommendationsGallery .image-overlay {
+    flex: 0 0 calc(33.333% - 10px); /* 3 в ряд для десктопа */
+    margin: 5px 0;
+}
+
+#recommendationsGallery a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    text-decoration: none;
+    flex: 0 0 auto;           /* робить, щоб елементи не стискалися */
+    max-width: 520px;
+}
+
+#recommendationsGallery img {
+    width: 100%;             /* ширина фото */
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+#recommendationsGallery .overlay-text {
+    position: absolute;
+    width: 50%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+}
+
+#recommendationsGallery .overlay-text {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* коли картка потрапляє у в’юпорт — показати на кілька секунд */
+#recommendationsGallery .image-overlay.show-overlay .overlay-text {
+  opacity: 1;
+}
+
+.recommendation {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+
+  width: 80vw;
+}
+
+.recommendation-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.recommendation-text.show {
+  opacity: 1;
+}
+/* Загальна обгортка зображення */
+.image-overlay.recommendation {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Фото */
+.image-overlay.recommendation img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Затемнення з текстом */
+.image-overlay.recommendation .overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* можна змінювати тут */
+  color: #fff; /* колір тексту */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem; /* можна змінювати */
+  font-weight: bold;  /* можна змінювати */
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  opacity: 0; /* спочатку невидиме */
+  transition: opacity 0.5s ease; /* плавність появи/зникання */
+  pointer-events: none; /* щоб не блокувати клік по фото */
+}
+
+.gallery img {
+    width: 50%;
+  display: block;
+  transition: 0.3s filter;
+    border-radius: 5px;
+}
+
+.image-overlay {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 750px; /* Ширина фото */
+    overflow: hidden; /* Щоб затемнення не виходило за межі контейнера */
+}
+
+.image-overlay img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease; /* Ефект збільшення */
+}
+
+.image-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.789); /* Чорне затемнення */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1; /* Під текстом, але над зображенням */
+}
+
+.image-overlay:hover img {
+    transform: scale(1.05); /* Легке збільшення зображення */
+}
+
+.image-overlay:hover::before {
+    opacity: 1; /* Показує затемнення при наведенні */
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgba(255, 255, 255, 0.7); /* Темний фон під текстом */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0; /* Текст прихований */
+    transition: opacity 0.3s ease;
+    z-index: 2; /* Вище затемнення */
+}
+
+.image-overlay.show-overlay img {
+  filter: brightness(60%); /* затемнення картинки */
+}
+
+.image-overlay.show-overlay .overlay-text {
+  opacity: 1; /* текст з’являється */
+}
+
+
+.image-overlay {
+    text-decoration: none; /* Прибрати підкреслення */
+}
+
+.footer {
+    padding: 20px;
+    bottom: 0;
+    width: 40%;            /* майже вся ширина */
+    max-width: 600px;      /* обмеження для десктопа */
+    font-size: 14px;
+    text-align: center;
+    margin: 0 20vw;        /* центруємо по горизонталі */
+    color: #333;
+    margin-bottom: 1%;
+    white-space: normal;   /* дозволяємо перенос */
+    word-break: break-word; /* переносимо довгі слова */
+    overflow-wrap: break-word;
+}
+
+
+@keyframes button-click {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0; /* Початково прихована */
+    visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+}
+
+.scroll-to-top:hover {
+    background-color: #555;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+
+/* малі екрани */
+@media screen and (max-width: 810px), (max-height: 900px) {
+    /* Корекція меню */
+    .menu {
+    width: 100%;
+    max-height: 80px;
+    padding: 0;
+    margin: 0;    
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+  }
+
+.menu.menu-open {
+    max-height: 100%;
+}
+
+.topbar-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    gap: 8px;
+    position: relative;
+}
+
+.logo-container {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0 25px 0;
+    white-space: nowrap;   /* щоб текст не переносився */
+
+}
+
+.logo-text .big{
+    font-size: 6vw;
+    line-height: 20px;
+    width: 100px;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    justify-content:left;
+    flex-shrink: 0;
+    left: 0; 
+    top: 15px;
+    padding: 0px 8px 45px;
+    min-width: 40px;
+    font-weight: bold;
+    background: transparent;
+    position: relative; /* залишається! */
+    z-index: 5;
+}
+
+.arrow {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 3px solid #333;
+    border-bottom: 3px solid #333;
+    transform: rotate(-45deg) !important; 
+    transition: all 0.3s ease;
+    margin-right: 0px;
+}
+
+/* Замість hover — через клас active */
+.language-switcher.active .arrow {
+    transform: rotate(-225deg) !important; /* стрілка в іншу сторону */
+    border-left: 3px solid #595959;
+    border-bottom: 3px solid #595959;
+}
+
+
+.language-switcher:hover .language-popup {
+    display: none ;
+    pointer-events: none;
+}
+
+.language-button {
+    font-size: 14px;  
+    all: unset;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 6px 8px;
+    border-radius: 4px;
+    line-height: 1;
+    user-select: none;
+}
+
+.language-popup {
+    position: fixed;
+    top: 150px;            /* налаштуй по вертикалі */
+    left: 75;            /* додав px */
+    background: white;
+
+  /* Замість border: 1px solid #ccc; робимо окремі бордери */
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: none;
+
+    border-radius: 0 0 4px 4px; /* щоб заокруглення було тільки знизу */
+  
+    padding: 10px;
+    width: 75px;
+    margin-top: 0px;
+    display: none;   /* за замовчуванням сховано */
+    z-index: 1100;
+
+    transform: translateY(-50%);
+    transition: opacity 0.4s ease, top 0.5s ease;
+}
+
+
+.language-switcher.active .language-popup {
+    display: flex;  /* показуємо, якщо є active */
+    opacity: 1;
+    top: 90px;  
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 20px;
+    opacity: 1;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 24px;
+    background-color: black;
+}
+
+.scrol {
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; 
+}
+
+  /* опційно — стиль смуги прокрутки */
+.scrol::-webkit-scrollbar {
+    width: 6px;
+}
+.scrol::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.4);
+    border-radius: 3px;
+}
+
+.project-container,
+.menu-bottom {
+    display: none;
+}
+
+.menu.menu-open .project-container,
+.menu.menu-open .menu-bottom {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.project-container {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: default;
+    overflow: visible !important;
+    height: auto;
+}
+
+.project-links {
+/* Ведемо себе як у звичайному стані: */
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    transition: none !important;
+    display: block !important; /* якщо раніше мінявось на grid */
+    padding: 0 !important;      /* усуваємо будь‑які внутрішні відступи */
+    margin: 0 !important;       /* усуваємо зовнішні */
+}   
+
+.project-links p {
+    margin-left: 15px;
+    padding: 0.5px;
+}
+
+.project-container:hover .project-links {
+    max-height: none; /* Достатньо велике значення, щоб помістити всі пункти */
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.project-container:hover .project-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-height: 70%; /* Адаптується під висоту вікна */
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;  /* Додаємо авто-скрол при потребі */
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
+
+    transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s;
+}  
+
+.menu h2 {
+    font-size: 18px;
+    width: 150px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/*content*/  
+.content p{
+    margin: 0;
+}
+
+.content-wrapper{
+    margin-left: 0;
+    margin-right: 0; 
+    text-align: center; 
+    margin: 0;
+        padding-left: 0;
+}
+
+.wrapper-name {
+    margin: 0 0 0 0 !important;
+}
+
+.content-wrapper h3{
+    white-space: nowrap !important;      /* один рядок */
+    font-size: 6.5vw !important;           /* адаптивний розмір */
+    margin: 100px auto 10px auto !important; /* автоматичні відступи для центру */
+    text-align: center !important;       /* текст по центру */
+    display: block;                      /* стандарт для h4 */
+    width: fit-content !important;       /* ширина = довжина тексту */
+}
+
+.content-wrapper p{
+    font-size: 3.5vw;
+    white-space: nowrap !important;      /* один рядок */
+    margin: 10px auto 15px auto !important; /* автоматичні відступи для центру */
+    text-align: center !important;       /* текст по центру */
+    display: block;                      /* стандарт для h4 */
+    width: fit-content !important;       /* ширина = довжина тексту */
+}
+
+.images{
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+.content-wrapper .images{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Зменшення відстані між фотографіями */
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 0px;
+    margin: 0 0vw !important;
+    padding:0 ;
+}
+
+.content-wrapper .images img {
+    max-width: 100%;
+}
+
+.content-wrapper .images {
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.lightbox .close {
+    font-size: 50px;
+    top: 10px;
+    right: 10px;
+}
+
+.lightbox .prev,
+.lightbox .next {
+    opacity: 0;
+}
+
+.content .main-text {
+    width: 55%;        /* майже на всю ширину */
+    font-size: 3.5vw;    /* адаптивний шрифт */
+    line-height: 1.5;  /* трохи компактніше */
+
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+}
+
+#recommendationsGallery {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center; /* центрує картки */
+margin: 0;
+width: 100%;
+}
+
+#recommendationsGallery .image-overlay {
+  flex: 0 0 auto;
+  width: 90vw;
+  margin-bottom: 15px;
+}
+
+/* Твоя сітка рекомендацій */
+.recommendations-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center; /* по центру */
+}
+
+.recommendations-grid .card {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.recommendations h4 {
+    white-space: normal !important;       /* дозволяємо перенос рядків */
+    font-size: 5.5vw !important;            /* адаптивний розмір для мобільних */
+    margin: 35px auto 0!important;            /* центруємо по горизонталі */
+    text-align: center !important;        /* текст всередині теж по центру */
+    display: block;                        /* стандарт для h4 */
+    width: 90% !important;                /* займає більшу частину екрану */
+    max-width: 600px;                      /* обмеження на великі екрани */
+    word-break: break-word;                /* перенос довгих слів */
+    overflow-wrap: break-word;
+}
+
+/* Галерея */
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    
+/* Футер */
+.footer {
+    margin: 20px auto;
+    text-align: center;
+    white-space: nowrap;
+    max-width: 200px !important;
+    padding: 10px;
+    font-size: 3vw;
+}     
+}
+    
+@media screen and (min-width: 811px) and (max-width: 1000px){
+html, body {
+    height: auto !important;
+    overflow-y: auto !important;
+}
+
+.project-container {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: default;
+    overflow: visible !important;
+    height: auto;
+}
+
+.project-links {
+/* Ведемо себе як у звичайному стані: */
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    transition: none !important;
+    display: block !important; /* якщо раніше мінявось на grid */
+    padding: 0 !important;      /* усуваємо будь‑які внутрішні відступи */
+    margin: 0 !important;       /* усуваємо зовнішні */
+}   
+
+.project-links p {
+    margin-left: 15px;
+    padding: 0.5px;
+}
+
+.project-container:hover .project-links {
+    max-height: none; /* Достатньо велике значення, щоб помістити всі пункти */
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.project-container:hover .project-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-height: 70%; /* Адаптується під висоту вікна */
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;  /* Додаємо авто-скрол при потребі */
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
+
+    transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s;
+}
+
+/*контент*/
+.content-wrapper{
+        padding-left: 250px;
+}
+
+.content-wrapper h4 {
+    margin: 50px auto 15px auto !important; /* автоматичні відступи для центру */
+    font-size: 3.5vw !important;
+}
+.images{
+    margin: 20px 35vw 0 40vw !important;
+    padding: 0 !important;
+    max-width: 50%;
+}
+
+.main-text {
+    width: 70%;
+    white-space: normal !important;       /* дозволяє перенос */
+    word-wrap: break-word !important;     /* переносить довгі слова */
+    overflow-wrap: break-word !important; /* сучасний аналог */
+}
+
+  .recommendations {
+    gap: 15px;
+  }
+
+  .recommendations .card {
+    flex: 1 1 100%;   /* на мобілках картки займають всю ширину */
+    max-width: 100%;
+
+  }
+
+}
