@@ -598,33 +598,17 @@ h3 {
     border: none;
     color: white;
     font-size: 2rem;
-    cursor: pointer;
+    cursor: pointer;}
+
+#mobileText {
+  position: fixed;   /* завжди прив’язаний до вікна */
+  top: 20px;         /* відступ зверху */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;     /* завжди поверх всіх елементів */
+  pointer-events: auto; /* щоб можна було свайпити */
 }
 
-.close-lightbox {
-    top: 20px;
-    right: 20px;
-}
-
-.prev-page {
-    left: 20px;
-}
-
-.next-page {
-    right: 20px;
-}
-
-.footer {
-    padding: 20px;
-    bottom: 0;
-    width: 40%;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 1%;
-    margin-left: 35%;
-    display: flex;
-    justify-content: center; /* по горизонталі */
-    align-items: center;     /* по вертикалі (якщо буде висота) */
 }
 
 /* малі екрани */
@@ -963,13 +947,17 @@ h3 {
     
 /* Футер */
 .footer {
-    margin: 20px auto;
-    text-align: center;
-    white-space: nowrap;
-    max-width: 200px !important;
-    padding: 10px;
+    padding: 20px;
+    bottom: 0;
+    width: 40%;
     font-size: 14px;
-}    
+    color: #333;
+    margin-bottom: 1%;
+    margin-left: 35%;
+    display: flex;
+    justify-content: center; /* по горизонталі */
+    align-items: center;     /* по вертикалі (якщо буде висота) */
+}
 }
 
 
