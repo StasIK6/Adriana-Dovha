@@ -912,6 +912,10 @@ h3 {
         background: rgba(0,0,0,0.99);
     }
 
+.prev-page, .next-page {
+    display: none;
+}
+
     .book-pages {
         flex-direction: column; /* показуємо сторінку одну за одною вертикально */
         justify-content: center;
