@@ -941,7 +941,7 @@ h3 {
     transform: translateY(-50%);
 }
 
-.close-lightbox {
+.close-lightbox, .prev-page, .next-page {
     top: 20px;
     right: 20px;
     transform: none; /* для хрестика верхній правий кут */
@@ -968,7 +968,7 @@ h3 {
     white-space: nowrap;
     max-width: 200px !important;
     padding: 10px;
-    font-size: 3vw;
+    font-size: 14px;
 }    
 }
 
