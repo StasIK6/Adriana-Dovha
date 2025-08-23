@@ -1094,7 +1094,6 @@ h3, h4{
 
 .content-wrapper p{
     font-size: 3.5vw;
-    white-space: nowrap !important;      /* один рядок */
     margin: 10px auto 15px auto !important; /* автоматичні відступи для центру */
     text-align: center !important;       /* текст по центру */
     display: block;                      /* стандарт для h4 */
@@ -1106,6 +1105,7 @@ h3, h4{
     padding: 0 !important;
     max-width: 100% !important;
 }
+    
 .content-wrapper .images{
     display: flex;
     flex-wrap: wrap;
@@ -1209,10 +1209,10 @@ width: 100%;
 .footer {
     margin: 20px auto;
     text-align: center;
-    white-space: nowrap;
+    white-space: nowrap !important;      /* один рядок */
     max-width: 200px !important;
     padding: 10px;
-    font-size: 3vw;
+    font-size: 12px;
 }     
 }
     
