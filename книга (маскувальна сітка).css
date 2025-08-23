@@ -602,7 +602,7 @@ h3 {
 
 #mobileText {
   position: fixed;   /* завжди прив’язаний до вікна */
-  top: 20px;         /* відступ зверху */
+  top: 20px !important;         /* відступ зверху */
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;     /* завжди поверх всіх елементів */
