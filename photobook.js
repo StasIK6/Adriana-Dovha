@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const MIN_SCALE = 0.5;
   const MAX_SCALE = 3;
 
-  // ---------- ВІДКРИТТЯ ЛАЙТБОКСУ З ОБКЛАДИНКИ ----------
+  // ---------- ВІДКРИТТЯ ----------
   if (bookCover) {
     bookCover.addEventListener("click", () => {
       openLightbox(0);
@@ -48,11 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     pages.forEach((page, index) => {
       const active = index === currentIndex;
       page.classList.toggle("active", active);
-      if (!active) {
-        page.style.transform = "";
-      }
+      if (!active) page.style.transform = "";
 
-      // Адаптація під мобільні
+      // адаптація під мобільні
       if (window.innerWidth <= 768) {
         page.style.maxHeight = window.innerHeight * 0.7 + "px";
         page.style.width = "90%";
@@ -103,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Подвійний клік/тап
   lightbox.addEventListener("dblclick", (e) => {
     if (e.target.classList.contains("lightbox-img")) {
       scale = scale === 1 ? 2 : 1;
@@ -111,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Zoom колесом (з Ctrl/⌘)
   lightbox.addEventListener(
     "wheel",
     (e) => {
@@ -124,32 +120,43 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
-  // ---------- СВАЙПИ ----------
-  let touchStartX = 0;
-  let touchEndX = 0;
-  const SWIPE_THRESHOLD = 50;
+  // ---------- СВАЙП / DRAG ----------
+  let startX = 0;
+  let isDragging = false;
 
-  if (lightbox) {
-    lightbox.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    lightbox.addEventListener("touchend", (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
+  function startSwipe(x) {
+    startX = x;
+    isDragging = true;
   }
 
-  function handleSwipe() {
-    const diff = touchEndX - touchStartX;
-    if (Math.abs(diff) > SWIPE_THRESHOLD) {
+  function endSwipe(x) {
+    if (!isDragging) return;
+    const diff = x - startX;
+    if (Math.abs(diff) > 50) {
       if (diff > 0) {
         prevBtn?.click();
       } else {
         nextBtn?.click();
       }
     }
+    isDragging = false;
   }
+
+  // touch (телефон)
+  lightbox.addEventListener("touchstart", (e) => {
+    startSwipe(e.changedTouches[0].clientX);
+  });
+  lightbox.addEventListener("touchend", (e) => {
+    endSwipe(e.changedTouches[0].clientX);
+  });
+
+  // mouse (ПК)
+  lightbox.addEventListener("mousedown", (e) => {
+    startSwipe(e.clientX);
+  });
+  lightbox.addEventListener("mouseup", (e) => {
+    endSwipe(e.clientX);
+  });
 
   // ---------- ПІДКАЗКА ----------
   function showHintOnce() {
