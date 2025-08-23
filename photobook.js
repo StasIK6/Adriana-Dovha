@@ -163,6 +163,35 @@ document.addEventListener("DOMContentLoaded", () => {
     if (resetZoom) resetZoomToDefault();
   }
 
+// ==================== СВАЙПИ ====================
+let touchStartX = 0;
+let touchEndX = 0;
+const SWIPE_THRESHOLD = 50; // мінімальна дистанція для визнання свайпу
+
+if (lightbox) {
+  lightbox.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  lightbox.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+}
+
+function handleSwipe() {
+  const diff = touchEndX - touchStartX;
+  if (Math.abs(diff) > SWIPE_THRESHOLD) {
+    if (diff > 0) {
+      // свайп вправо → попередня сторінка
+      prevBtn?.click();
+    } else {
+      // свайп вліво → наступна сторінка
+      nextBtn?.click();
+    }
+  }
+}
+
   // ---------- ЗУМ ----------
   function applyZoom() {
     const active = document.querySelector(".lightbox-img.active");
