@@ -929,7 +929,7 @@ h3 {
     }
 
 /* Кнопки навігації лайтбоксу */
-.close-lightbox, .prev-page, .next-page {
+.close-lightbox{
     position: fixed; /* змінили з absolute на fixed */
     background: none;
     border: none;
