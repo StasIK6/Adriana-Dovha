@@ -787,7 +787,7 @@ p a:hover::after {
 /* Список нагород */
 .text ul {
     list-style-type: square;
-    margin: 25px 0 5px;
+    margin: 25px 0 -15px;
     text-align: left; /* Збереження вирівнювання для списків */
 }
 
