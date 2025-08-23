@@ -1076,7 +1076,7 @@ h3, h4{
     margin-right: 0; 
     text-align: center; 
     margin: 0;
-        padding-left: 0;
+    padding-left: 0;
 }
 
 .wrapper-name {
@@ -1086,7 +1086,7 @@ h3, h4{
 .content-wrapper h3{
     white-space: nowrap !important;      /* один рядок */
     font-size: 6.5vw !important;           /* адаптивний розмір */
-    margin: 100px auto 10px auto !important; /* автоматичні відступи для центру */
+    margin: 100px 0 10px 0 !important; /* автоматичні відступи для центру */
     text-align: center !important;       /* текст по центру */
     display: block;                      /* стандарт для h4 */
     width: fit-content !important;       /* ширина = довжина тексту */
