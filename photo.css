@@ -1270,7 +1270,7 @@ html, body {
 
 /*контент*/
 .content-wrapper{
-        padding-left: 250px;
+        padding-left: 0;
 }
 
 .content-wrapper h4 {
