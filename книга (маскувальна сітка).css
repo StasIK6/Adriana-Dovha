@@ -604,6 +604,7 @@ h3 {
   position: fixed;   /* завжди прив’язаний до вікна */
   top: 20px !important;         /* відступ зверху */
   left: 50%;
+ font-size: 6vw !important;
   transform: translateX(-50%);
   z-index: 9999;     /* завжди поверх всіх елементів */
   pointer-events: auto; /* щоб можна було свайпити */
