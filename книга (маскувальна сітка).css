@@ -569,8 +569,8 @@ h3 {
 #desktopText { display: block; }
 #mobileText { display: none; }
 
-/* На мобілках міняємо */
-@media screen and (max-width: 768px) {
+/* малі екрани */
+@media screen and (max-width: 768px){
   #desktopText { display: none; }
   #mobileText { display: block; }
 
@@ -580,16 +580,7 @@ h3 {
     align-items: center;
 }
 
-.lightbox-img {
-    display: none;
-    max-width: 95%;
-    max-height: 95%;
-    border-radius: 10px;
-}
 
-.lightbox-img.active {
-    display: block;
-}
 
 .close-lightbox, .prev-page, .next-page {
     position: absolute;
@@ -608,11 +599,6 @@ h3 {
   z-index: 9999;     /* завжди поверх всіх елементів */
   pointer-events: auto; /* щоб можна було свайпити */
 }
-
-}
-
-/* малі екрани */
-@media screen and (max-width: 768px){
     /* Корекція меню */
     .menu {
     width: 100%;
@@ -950,11 +936,12 @@ h3 {
     padding: 20px;
     bottom: 0;
     width: 40%;
+    margin: auto auto;
     font-size: 14px;
     color: #333;
     margin-bottom: 1%;
-    margin-left: 35%;
     display: flex;
+    text-align: center;
     justify-content: center; /* по горизонталі */
     align-items: center;     /* по вертикалі (якщо буде висота) */
 }
