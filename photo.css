@@ -1098,6 +1098,9 @@ h3, h4{
     text-align: center !important;       /* текст по центру */
     display: block;                      /* стандарт для h4 */
     width: fit-content !important;       /* ширина = довжина тексту */
+    white-space: normal;   /* дозволяє перенос */
+    word-wrap: break-word; /* переносить довгі слова */
+    overflow-wrap: break-word; /* сучасний варіант */
 }
 
 .images{
