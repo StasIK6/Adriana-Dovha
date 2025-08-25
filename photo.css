@@ -840,7 +840,7 @@ h3, h4{
 
 
 /* малі екрани */
-@media screen and (max-width: 810px), (max-height: 900px) {
+@media screen and (max-width: 810px) {
     /* Корекція меню */
     .menu {
     width: 100%;
@@ -1218,89 +1218,4 @@ width: 100%;
     font-size: 12px;
 }     
 }
-    
-@media screen and (min-width: 0px) and (max-width: 0px){
-html, body {
-    height: auto !important;
-    overflow-y: auto !important;
-}
-
-.project-container {
-    display: block;
-    position: relative;
-    margin-bottom: 20px;
-    cursor: default;
-    overflow: visible !important;
-    height: auto;
-}
-
-.project-links {
-/* Ведемо себе як у звичайному стані: */
-    max-height: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    overflow: visible !important;
-    transition: none !important;
-    display: block !important; /* якщо раніше мінявось на grid */
-    padding: 0 !important;      /* усуваємо будь‑які внутрішні відступи */
-    margin: 0 !important;       /* усуваємо зовнішні */
-}   
-
-.project-links p {
-    margin-left: 15px;
-    padding: 0.5px;
-}
-
-.project-container:hover .project-links {
-    max-height: none; /* Достатньо велике значення, щоб помістити всі пункти */
-    opacity: 1;
-    visibility: visible;
-}
-
-
-.project-container:hover .project-links {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    max-height: 70%; /* Адаптується під висоту вікна */
-    opacity: 1;
-    visibility: visible;
-    overflow-y: auto;  /* Додаємо авто-скрол при потребі */
-    scrollbar-color: rgba(0,0,0,0.2) transparent;
-
-    transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s;
-}
-
-/*контент*/
-.content-wrapper{
-        padding-left: 0;
-}
-
-.content-wrapper h4 {
-    margin: 50px auto 15px auto !important; /* автоматичні відступи для центру */
-    font-size: 3.5vw !important;
-}
-.images{
-    margin: 20px 35vw 0 40vw !important;
-    padding: 0 !important;
-    max-width: 50%;
-}
-
-.main-text {
-    width: 70%;
-    white-space: normal !important;       /* дозволяє перенос */
-    word-wrap: break-word !important;     /* переносить довгі слова */
-    overflow-wrap: break-word !important; /* сучасний аналог */
-}
-
-  .recommendations {
-    gap: 15px;
-  }
-
-  .recommendations .card {
-    flex: 1 1 100%;   /* на мобілках картки займають всю ширину */
-    max-width: 100%;
-
-  }
-
-}
+   
