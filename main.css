@@ -691,7 +691,7 @@ p a:hover::after {
 }
 
 /* малі екрани */
-@media screen and (max-width: 768px), (max-height: 800px) {
+@media screen and (max-width: 768px){
     /* Корекція меню */
     .menu {
     width: 100%;
