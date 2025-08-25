@@ -1015,43 +1015,6 @@ html, body {
 }
 
 /*контент*/
-.content-wrapper {
-    padding: 10px;
-    width: 100%;
-    max-width: 75%;   /* максимум для великих екранів */
-    box-sizing: border-box;
-    margin: 0 0 0 250px;     /* центрування */
-    line-height: 1.6;   /* для кращої читабельності */
-}
-
-.content-wrapper h3 {
-    font-size: 40px;
-    color: #222;
-    margin-bottom: 20px;
-    margin: 40px 0 0 auto;
-}
-
-.content-wrapper .content {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #444;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Обкладинка книги */
-.book-cover {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    margin-left: 40%;
-}
-
-.book-cover img {
-    width: 53vw;
-    height: auto;
-    border-radius: 5px;
-}
-
 .footer {
     padding: 20px;
     bottom: 0;
