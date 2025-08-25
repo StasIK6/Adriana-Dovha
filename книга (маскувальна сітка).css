@@ -573,7 +573,6 @@ h3 {
 @media screen and (max-width: 768px) {
   #desktopText { display: none; }
   #mobileText { display: block; }
-}
 
 .book-pages {
     display: flex;
