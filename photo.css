@@ -1219,7 +1219,7 @@ width: 100%;
 }     
 }
     
-@media screen and (min-width: 811px) and (max-width: 1000px){
+@media screen and (min-width: 0px) and (max-width: 0px){
 html, body {
     height: auto !important;
     overflow-y: auto !important;
