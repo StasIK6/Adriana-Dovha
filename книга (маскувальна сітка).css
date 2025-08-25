@@ -612,7 +612,7 @@ h3 {
 }
 
 /* малі екрани */
-@media screen and (width: 768px){
+@media screen and (max-width: 768px){
     /* Корекція меню */
     .menu {
     width: 100%;
