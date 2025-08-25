@@ -1273,4 +1273,16 @@ html, body {
 }
 
 /*контент*/
+    .footer {
+    padding: 20px;
+    bottom: 0;
+    width: 40%;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 1%;
+    margin-left: 45%;
+    display: flex;
+    justify-content: center; /* по горизонталі */
+    align-items: center;     /* по вертикалі (якщо буде висота) */
+}
 }
