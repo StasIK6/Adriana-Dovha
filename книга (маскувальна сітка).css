@@ -427,12 +427,13 @@ h3 {
 }
 
 .content-wrapper h3 {
-    font-size: 40px;
+    font-size: 7vw;
     color: #222;
     margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
     margin: 40px 0 0 auto;
 }
-
 
 .content-wrapper p {
     font-size: 20px !important;     /* адаптивний розмір */
