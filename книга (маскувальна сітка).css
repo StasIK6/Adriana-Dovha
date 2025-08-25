@@ -429,10 +429,9 @@ h3 {
 .content-wrapper h3 {
     font-size: 7vw;
     color: #222;
-    margin-bottom: 20px;
     width: 100%;
     text-align: center;
-    margin: 40px 0 0 auto;
+    margin: 40px 0 0 0;
 }
 
 .content-wrapper p {
